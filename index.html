@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce | Webscrape Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Use the "Open Sans" font for the entire website */
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Reset some default styles */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set a common font family and background color */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Style the header and navigation */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff9900;
+        }
+
+        .cart a {
+            background-color: #ff9900;
+            color: #333;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cart a:hover {
+            background-color: #333;
+            color: #ff9900;
+        }
+
+        /* ... (previous styles) ... */
+
+        /* Style the navigation links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff9900;
+        }
+
+        /* Style the menu icon */
+        .menu-icon {
+            display: none; /* Initially hidden */
+            font-size: 2rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Media query for screens below 768px width (adjust as needed) */
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block; /* Display the menu icon */
+            }
+
+            .nav-links {
+                display: none; /* Hide the navigation links */
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px; /* Adjust the top position as needed */
+                left: 0;
+                right: 0;
+                z-index: 1;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex; /* Show the links when the menu is active */
+            }
+
+            .nav-links li {
+                margin-right: 0; /* Remove the margin */
+                margin-bottom: 10px;
+            }
+        }
+
+
+        /* Style the banner section */
+        .banner {
+            background-image: url('img/banner.jpg');
+            background-size: cover;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+        }
+
+        /* Style the product listing */
+        .product {
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .product-details {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            color: #ff9900;
+            margin: 10px 0;
+        }
+
+        .product-reviews {
+            display: flex;
+            align-items: center;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .star {
+            font-size: 1.2rem;
+            margin-right: 5px;
+            color: #ff9900;
+        }
+
+        .review-count {
+            font-size: 1rem;
+        }
+
+        .buy-button {
+            background-color: #ff9900;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #333;
+            color: #ff9900;
+        }
+
+        /* Style the footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Webscrape Master</h1>
+            </div>
+            <div class="menu-icon">☰</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="cart">
+                <a href="#">Cart</a>
+            </div>
+        </nav>
+    </header>
+    
+
+    <section class="banner">
+        <h2>Welcome to E-commerce</h2>
+        <p>Your one-stop destination for amazing products.</p>
+    </section>
+
+    <div class="products">
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Smartphone X1</h3>
+            <p class="product-details">6.2-inch display, 128GB storage, 16MP camera</p>
+            <p class="product-price">$399.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.8 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Laptop ProBook 15</h3>
+            <p class="product-details">15.6-inch Full HD, Intel i7 processor, 512GB SSD</p>
+            <p class="product-price">$899.00</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.5 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Wireless Headphones H2</h3>
+            <p class="product-details">Noise-canceling, 20-hour battery life, Bluetooth</p>
+            <p class="product-price">$129.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.7 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Smart Watch S3</h3>
+            <p class="product-details">Heart rate monitor, GPS, waterproof, fitness tracker</p>
+            <p class="product-price">$149.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.6 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">4K Ultra HD TV U55</h3>
+            <p class="product-details">55-inch display, Smart TV, HDR, Dolby Vision</p>
+            <p class="product-price">$799.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.9 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Digital Camera D10</h3>
+            <p class="product-details">20MP, 4K video, Wi-Fi connectivity</p>
+            <p class="product-price">$349.00</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.4 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Coffee Maker C7</h3>
+            <p class="product-details">12-cup capacity, programmable timer, auto shut-off</p>
+            <p class="product-price">$49.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.3 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Gaming Console G6</h3>
+            <p class="product-details">4K gaming, 1TB storage, multiplayer support</p>
+            <p class="product-price">$499.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.8 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Fitness Tracker F4</h3>
+            <p class="product-details">Step counter, sleep monitor, heart rate sensor</p>
+            <p class="product-price">$79.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.6 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Bluetooth Speaker B12</h3>
+            <p class="product-details">Portable, waterproof, 10-hour battery life</p>
+            <p class="product-price">$69.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.5 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Vacuum Cleaner V9</h3>
+            <p class="product-details">Bagless, HEPA filter, pet hair removal</p>
+            <p class="product-price">$199.00</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.7 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Designer Handbag H5</h3>
+            <p class="product-details">Genuine leather, adjustable strap, stylish design</p>
+            <p class="product-price">$249.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.9 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Hiking Boots B8</h3>
+            <p class="product-details">Waterproof, durable, available in multiple sizes</p>
+            <p class="product-price">$119.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.6 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Blender MasterBlend M3</h3>
+            <p class="product-details">700W motor, 6-speed settings, stainless steel blades</p>
+            <p class="product-price">$59.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.4 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Digital Watch W2</h3>
+            <p class="product-details">Water-resistant, date display, leather band</p>
+            <p class="product-price">$89.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.5 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Home Security Camera S7</h3>
+            <p class="product-details">1080p resolution, night vision, motion detection</p>
+            <p class="product-price">$129.00</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.7 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Cookware Set C10</h3>
+            <p class="product-details">Non-stick, 10-piece set with lids, dishwasher safe</p>
+            <p class="product-price">$149.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.8 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Wireless Mouse M5</h3>
+            <p class="product-details">Ergonomic design, adjustable DPI, plug and play</p>
+            <p class="product-price">$24.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.5 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Toaster Oven T3</h3>
+            <p class="product-details">4-slice capacity, timer, bake and broil functions</p>
+            <p class="product-price">$39.95</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.3 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+        
+        
+        <div class="product">
+            <img src="product-image.jpg" alt="Product Image">
+            <h3 class="product-name">Backpack Traveler B5</h3>
+            <p class="product-details">Waterproof, multiple compartments, padded straps</p>
+            <p class="product-price">$59.99</p>
+            <div class="product-reviews">
+                <span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span 
+        class="star">&#9733;</span>
+                <span class="star">&#9734;</span>
+                <span class="review-count">(4.6 Reviews)</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Webscrape Master</p>
+    </footer>
+</body>
+</html>

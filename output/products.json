@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Smartphone X1",
+        "details": "6.2-inch display, 128GB storage, 16MP camera",
+        "price": "$399.99",
+        "reviews": "4.8 Reviews"
+    },
+    {
+        "name": "Laptop ProBook 15",
+        "details": "15.6-inch Full HD, Intel i7 processor, 512GB SSD",
+        "price": "$899.00",
+        "reviews": "4.5 Reviews"
+    },
+    {
+        "name": "Wireless Headphones H2",
+        "details": "Noise-canceling, 20-hour battery life, Bluetooth",
+        "price": "$129.99",
+        "reviews": "4.7 Reviews"
+    },
+    {
+        "name": "Smart Watch S3",
+        "details": "Heart rate monitor, GPS, waterproof, fitness tracker",
+        "price": "$149.95",
+        "reviews": "4.6 Reviews"
+    },
+    {
+        "name": "4K Ultra HD TV U55",
+        "details": "55-inch display, Smart TV, HDR, Dolby Vision",
+        "price": "$799.99",
+        "reviews": "4.9 Reviews"
+    },
+    {
+        "name": "Digital Camera D10",
+        "details": "20MP, 4K video, Wi-Fi connectivity",
+        "price": "$349.00",
+        "reviews": "4.4 Reviews"
+    },
+    {
+        "name": "Coffee Maker C7",
+        "details": "12-cup capacity, programmable timer, auto shut-off",
+        "price": "$49.95",
+        "reviews": "4.3 Reviews"
+    },
+    {
+        "name": "Gaming Console G6",
+        "details": "4K gaming, 1TB storage, multiplayer support",
+        "price": "$499.99",
+        "reviews": "4.8 Reviews"
+    },
+    {
+        "name": "Fitness Tracker F4",
+        "details": "Step counter, sleep monitor, heart rate sensor",
+        "price": "$79.99",
+        "reviews": "4.6 Reviews"
+    },
+    {
+        "name": "Bluetooth Speaker B12",
+        "details": "Portable, waterproof, 10-hour battery life",
+        "price": "$69.95",
+        "reviews": "4.5 Reviews"
+    },
+    {
+        "name": "Vacuum Cleaner V9",
+        "details": "Bagless, HEPA filter, pet hair removal",
+        "price": "$199.00",
+        "reviews": "4.7 Reviews"
+    },
+    {
+        "name": "Designer Handbag H5",
+        "details": "Genuine leather, adjustable strap, stylish design",
+        "price": "$249.99",
+        "reviews": "4.9 Reviews"
+    },
+    {
+        "name": "Hiking Boots B8",
+        "details": "Waterproof, durable, available in multiple sizes",
+        "price": "$119.95",
+        "reviews": "4.6 Reviews"
+    },
+    {
+        "name": "Blender MasterBlend M3",
+        "details": "700W motor, 6-speed settings, stainless steel blades",
+        "price": "$59.99",
+        "reviews": "4.4 Reviews"
+    },
+    {
+        "name": "Digital Watch W2",
+        "details": "Water-resistant, date display, leather band",
+        "price": "$89.95",
+        "reviews": "4.5 Reviews"
+    },
+    {
+        "name": "Home Security Camera S7",
+        "details": "1080p resolution, night vision, motion detection",
+        "price": "$129.00",
+        "reviews": "4.7 Reviews"
+    },
+    {
+        "name": "Cookware Set C10",
+        "details": "Non-stick, 10-piece set with lids, dishwasher safe",
+        "price": "$149.99",
+        "reviews": "4.8 Reviews"
+    },
+    {
+        "name": "Wireless Mouse M5",
+        "details": "Ergonomic design, adjustable DPI, plug and play",
+        "price": "$24.99",
+        "reviews": "4.5 Reviews"
+    },
+    {
+        "name": "Toaster Oven T3",
+        "details": "4-slice capacity, timer, bake and broil functions",
+        "price": "$39.95",
+        "reviews": "4.3 Reviews"
+    },
+    {
+        "name": "Backpack Traveler B5",
+        "details": "Waterproof, multiple compartments, padded straps",
+        "price": "$59.99",
+        "reviews": "4.6 Reviews"
+    }
+]
